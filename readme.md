@@ -85,4 +85,24 @@ if you run to app again by mvn clean install spring-boot:run, the table will be 
 
 ## 5. Add REST API
 
+so far, we have
+- a homecontroller, that delivers a thymeleaf rendered index.html
+- a persistence layer to store data in mysql
+
+we are going to use static Angular view and want to request data by REST API
+
+**2 Options** to access REST API
+
+### A) generic full HATEOS REST API, generated from repository
+  - declare dependency in pom.xml for
+  - annotate Repository as REST Resource (@RespositoryRestResource)
+  - for testing purpose, declare the respecitive ressource to be accessible without security
+
+> curl -i http://localhost:8080/customers
+
+> curl -i http://localhost:8080/customers/search/findByName\?name=Meier
+
+
+
+
 ## 6. Add Angular Controller/Service to receive data
