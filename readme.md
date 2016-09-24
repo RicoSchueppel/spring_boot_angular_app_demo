@@ -94,15 +94,27 @@ we are going to use static Angular view and want to request data by REST API
 **2 Options** to access REST API
 
 ### A) generic full HATEOS REST API, generated from repository
-  - declare dependency in pom.xml for
-  - annotate Repository as REST Resource (@RespositoryRestResource)
+  - declare dependency in pom.xml for spring-boot-starter-data-rest
   - for testing purpose, declare the respecitive ressource to be accessible without security
+> vi
 
 > curl -i http://localhost:8080/customers
 
 > curl -i http://localhost:8080/customers/search/findByName\?name=Meier
 
+you find this in git tag version 0.5
 
+### B) declare a REST API by yourself via RestController
 
+- remove pom.xml dependency 'spring-boot-starter-data-rest'
+- path /customers will not be found anymore
+- thus, we add our own api controller for /customers ressource
+> vi src/main/java/de/davitec/appdemo/api/CustomersRestController.java
+
+since we did not deactive the permitAll() config for customers, we can again test this via (after rebuild)
+
+> curl -i http://localhost:8080/customers
+
+btw, we did not define a rule for /login ressource, so even login was not accessible without registration - that makes no sense at all ;)
 
 ## 6. Add Angular Controller/Service to receive data
