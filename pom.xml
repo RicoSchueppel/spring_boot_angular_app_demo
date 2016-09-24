@@ -31,10 +31,10 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-thymeleaf</artifactId>
   </dependency>
-  <dependency>
+  <!-- dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-data-jpa</artifactId>
-  </dependency>
+  </dependency -->
   
   <!-- Spring Security -->
   <dependency>
@@ -47,10 +47,10 @@
   </dependency>
   
   <!-- mysql connector -->
-  <dependency>
+  <!-- dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
-  </dependency>
+  </dependency -->
     
   <!-- Junit Testing -->
   <dependency>

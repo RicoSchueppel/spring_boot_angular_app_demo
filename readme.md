@@ -3,7 +3,7 @@ Demo App to demonstrate Java Spring Boot App with Angular
 - most steps are git tagged
 
 
-## 0. install maven 
+## 0. install maven
 
 > brew install maven
 
@@ -22,9 +22,15 @@ e.g. mvn archetype:generate -DgroupId=com.mkyong.common -DartifactId=SpringExamp
 
 mkdir -p src/main/java/de/davitec/appdemo
 
+## 2. add an entry point for Spring Boot App
+and annotate it according to Spring + we use AutoConfiguration
 
+> src/main/java/de/davitec/appdemo/Application.java
 
+now, you can alreade build and run the appdemo
 
+> mvn clean install spring-boot:run
 
+this will compile and package a spring boot app and run embedded Tomcat, App is launched at locahost:8080
 
-
+hint: the git tag v0.2 declare als spring-security as a dependendency .. thus, localhost:8080 asks for login
