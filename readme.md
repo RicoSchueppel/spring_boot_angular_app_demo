@@ -39,15 +39,15 @@ Maven defines dependencies and build lifecycle of your project. The are some alt
 
 > vi src/main/java/de/davitec/appdemo/Application.java
 
-Take care about annotations, we us Spring Boot and AutoConfig (comes with Spring Framwork).
+Take care about annotations, we use Spring Boot and AutoConfig (comes with Spring Framework).
 
-At this state, you can already build and run an  appdemo (well, you want see very much at this state).
+At this state, you can already build and run an  appdemo (well, you won't see very much at this state).
 
 > mvn clean install spring-boot:run
 
-This Maven command compile, package and install a the Spring Boot app (defined by pom.xml). Spring Boot runs an embedded Tomcat, thus you will find the app at locahost:8080.
+This Maven command compile, package and install a the Spring Boot app (defined by pom.xml). Spring Boot runs an embedded Tomcat, thus you will find the app at localhost:8080.
 
-Info: The git tag v0.2 declare also spring-security as a dependendency .. thus, localhost:8080 already asks for login. No users are defined, thus, there will be no access at all.
+Info: The git tag v0.2 declare also spring-security as a dependency .. thus, localhost:8080 already asks for login. No users are defined,yet. Thus, there will be no access at all.
 
 ## 3. Add some basic authentication and a simple Hello World Website
 
@@ -56,6 +56,7 @@ We add some inMemory Authentification. Later on, you might persist user/role dat
 
 To provide a index.html Website, we need a Spring MVC Controller and a Template .. have a look at those files:
 > src/main/resources/templates/index.html
+
 > src/main/java/de/davitec/appdemo/controller/HomeController.java
 
 for ServerSide Template Rendering, we use Thymeleaf (http://www.thymeleaf.org/) .. this is included by our pom.xml already.
@@ -66,7 +67,7 @@ now run again
 
 > mvn spring-boot:run
 
-Try ist. Login in as user/password oder admin/password. You will find differences in the index.html, that reflect security roles.
+If your want to try it: Login in as "user"/"password" oder "admin"/"password". You will find differences in the "localhost:8080/" (i.e. index.html), that reflect security roles via thymeleaf.
 
 ## 4. Add a customer entity and a customer repository using JPA
 
