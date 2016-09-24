@@ -20,10 +20,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.withUser("admin").password("password").roles("USER","ADMIN");
 	}
 	
-	protected void configure(HttpSecurity http) throws Exception {
-	    http
-	        .authorizeRequests()
-	        	.antMatchers("/customers/**").permitAll()    
-	        	.anyRequest().authenticated(); 
-	}
 }

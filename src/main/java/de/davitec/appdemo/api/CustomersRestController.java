@@ -17,7 +17,7 @@ public class CustomersRestController {
 	
 	@Autowired CustomerRepository customers;
 	
-	//@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('USER')")
 	@RequestMapping(value= "/customers", method=RequestMethod.GET)
 	public List<Customer> getCustomers() {
 		return customers.findAll();

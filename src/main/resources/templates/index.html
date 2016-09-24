@@ -8,15 +8,22 @@
   <title>app demo</title>
   
   <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script type="text/javascript" src="/webjars/jquery/3.1.0/jquery.js"></script>
   <script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.js"></script>
+  <script type="text/javascript" src="/webjars/angularjs/1.5.7/angular.js"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+  <script type="text/javascript" src="/js/customerController.js"></script>
+  <script type="text/javascript" src="/js/customerService.js"></script>
 
 </head>
-<body>
+<body ng-app="myApp">
 <div class="container">
   <h1>Just say Hello</h1>
   <p th:text="${message}">This is some message.</p>
   <p sec:authorize="hasRole('ROLE_ADMIN')">You can see this only, if you are <strong>admin</strong></p>
   <a href="/login?logout">Logout</a>
+  <p>here comes a ng-include .. checkout ng-view or even better 'ui-router'</p>
+  <div ng-include="'views/customers.html'"></div>
 </div>
 
 </body>
