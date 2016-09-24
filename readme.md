@@ -9,9 +9,9 @@ To get a better overview, most steps are git tagged. Just use
 
 > brew install maven
 
-on mac .. and maybe java itself ;)
+on mac .. and maybe you need to install java itself ;)
 
-## 1. Create basis structure of a maven project:
+## 1. Create basic structure of a maven project:
 
 Either use an **archetype** to generate basic folder structure and entrypoints
 - http://maven.apache.org/archetype/maven-archetype-plugin/generate-mojo.html
@@ -25,51 +25,52 @@ e.g.
 > mvn archetype:generate -DgroupId=com.mkyong.common -DartifactId=SpringExamples  -DarchetypeArtifactId=maven-archetype-quickstart - DinteractiveMode=true
 
 
-### or Create a pom.xml and folder structure manually
+### or Create a pom.xml and respective folder structure manually
 
-> touch pom.xml
+> vi pom.xml
 
 > mkdir -p src/main/java/de/davitec/appdemo
 
 etc.
 
-Maven defined dependencies and build lifecycle of your project. Several alternatives, e.g. gradle.
+Maven defines dependencies and build lifecycle of your project. The are some alternatives to maven, like gradle etc.
 
-## 2. Add an entry point for Spring Boot App
-and annotate it according to Spring + we use AutoConfiguration
+## 2. Add an Java Entry Point for Spring Boot App
 
 > vi src/main/java/de/davitec/appdemo/Application.java
 
-now, you can already build and run the appdemo
+Take care about annotations, we us Spring Boot and AutoConfig (comes with Spring Framwork).
+
+At this state, you can already build and run an  appdemo (well, you want see very much at this state).
 
 > mvn clean install spring-boot:run
 
-this will compile and package a spring boot app and run embedded Tomcat, App is launched at locahost:8080
+This Maven command compile, package and install a the Spring Boot app (defined by pom.xml). Spring Boot runs an embedded Tomcat, thus you will find the app at locahost:8080.
 
-hint: the git tag v0.2 declare als spring-security as a dependendency .. thus, localhost:8080 asks for login
+Info: The git tag v0.2 declare also spring-security as a dependendency .. thus, localhost:8080 already asks for login. No users are defined, thus, there will be no access at all.
 
 ## 3. Add some basic authentication and a simple Hello World Website
 
+We add some inMemory Authentification. Later on, you might persist user/role data via JPA.
 > vi src/main/java/de/davitec/appdemo/WebSecurityConfig.java
 
-To provide a index.html Website, we need a Spring MVC Controller and a Template ..
-
-look at those files:
+To provide a index.html Website, we need a Spring MVC Controller and a Template .. have a look at those files:
 > src/main/resources/templates/index.html
 > src/main/java/de/davitec/appdemo/controller/HomeController.java
 
+for ServerSide Template Rendering, we use Thymeleaf (http://www.thymeleaf.org/) .. this is included by our pom.xml already.
 
-for ServerSide Template Rendering, we use Thymeleaf (http://www.thymeleaf.org/) .. this is included by pom.xml
-
-depending, on what you are going to do, you might need to add some thymeleaf config: http://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html
+Depending, on what you are going to do, you might need to add some thymeleaf config as well: http://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html
 
 now run again
 
 > mvn spring-boot:run
 
-## 4. Add an entity/repository with JPA
+Try ist. Login in as user/password oder admin/password. You will find differences in the index.html, that reflect security roles.
 
-We now add a JPA Persistence Layer and configure a local mysql database -> for external database, you must have the database already created manually ! you might also use h2 embedded database .. but we want to check results by sequel pro or something else
+## 4. Add a customer entity and a customer repository using JPA
+
+We now add a JPA Persistence Layer and configure a local mysql database -> for external database, you must have the database already created manually ! you might also use h2 embedded database .. but we want to check results by sequel pro or something else for testing purpose.
 
 Modifiy pom.xml -> add *spring-boot-starter-data-jpa*
 
@@ -145,7 +146,7 @@ Now, it's time to use the rest API via AngularJS in FrontEnd. There, we will do 
 
 - add a controller and a service the consume rest data as static resources (async! broadcast success event and thus, load data by controller)
 
-## 7. Edit data via Angular/Rest
+## 7. Full CRUD AngularJS/RestAPI
 
 Finishing step 6, we got a list of persisted data via anuglar js.
 
@@ -154,5 +155,16 @@ Now we want to do full CRUD with customers, in detail
 - add htttp promises/service at src/main/resources/static/js/customerService.js
 - add angular js controller methods src/main/resources/static/js/customerController.js
 - add some modal dialogs to enter customer data
-- ignore CSRF request for API on POST/PUT/DELETE methods
+- CSRF request for API on POST/PUT/DELETE methods (overwrite spring security defaults)
 - additionally, we add a custom login.html with respective backend controller
+
+Have Fun!
+
+## Step 8,9,10,...
+
+check out
+- angular ui-routes ! a finite state machine to route states via url, including transitions and nested states ui-views
+- maven docker integration to provide mysql as a microservice
+- cucumber / selenium  intergration-tests
+- jasmine for angular unit tests
+- much more maven libs & plugins .. https://mvnrepository.com
