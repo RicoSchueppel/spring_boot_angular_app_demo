@@ -20,4 +20,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.withUser("admin").password("password").roles("USER","ADMIN");
 	}
 	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+    
+		// prevent 403 on PUT, DELETE Api Calls - disable CSRF for all REST API controllers
+		http.csrf().ignoringAntMatchers("/api/**");
+		
+		 http
+     		.authorizeRequests()
+     			.anyRequest().authenticated()
+		        .and()
+		    .formLogin()
+		        .loginPage("/login")
+				.permitAll()
+				.and()
+			.logout()
+				.permitAll();
+	}
+	
 }

@@ -127,8 +127,8 @@ btw, we did not define a rule for /login ressource, so even login was not access
 
 ## 6. Add Angular Controller/Service to receive data
 
-now its time to us the rest API via AngularJS in FrontEnd
-there we will do the following steps
+Now, it's time to use the rest API via AngularJS in FrontEnd. There, we will do the following steps:
+
 - remove the auth permitAll exception for /customers
 > vi src/main/java/de/davitec/appdemo/WebSecurityConfig.java
 
@@ -144,3 +144,15 @@ there we will do the following steps
 - index.html: ng-include your static html views (partials) to the angular app -> we are going to show a list of Customers
 
 - add a controller and a service the consume rest data as static resources (async! broadcast success event and thus, load data by controller)
+
+## 7. Edit data via Angular/Rest
+
+Finishing step 6, we got a list of persisted data via anuglar js.
+
+Now we want to do full CRUD with customers, in detail
+- add CRUD methods on REST API controller src/main/java/de/davitec/appdemo/api/CustomersRestController.java
+- add htttp promises/service at src/main/resources/static/js/customerService.js
+- add angular js controller methods src/main/resources/static/js/customerController.js
+- add some modal dialogs to enter customer data
+- ignore CSRF request for API on POST/PUT/DELETE methods
+- additionally, we add a custom login.html with respective backend controller

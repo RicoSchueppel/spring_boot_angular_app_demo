@@ -1,7 +1,57 @@
 <div ng-controller="customerController as ctrl">
-  <ul>
-	  <li ng-repeat="customer in customers">
-	     {{customer.name}} - {{customer.company}}
-	  </li>
-  </ul>
+	<!-- partial for listing customers -->
+	<div >
+	  <ul>
+		  <li ng-repeat="customer in customers">
+		     {{customer.name}} - {{customer.company}} <a ng-click="editCustomer(customer.id)">edit</a>&nbsp;<a ng-click="deleteCustomer(customer.id)">delete</a> 	     
+		  </li>
+	  </ul>
+	  <a ng-click="newCustomer()">new</a>
+	</div>
+
+	<!-- Modal For New Customer (you might do new & edit in one modal, separated just for clearness)-->
+	<div id="newCustomerModalId" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <form>
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Create new Customer</h4>
+	        </div>
+	        <div class="modal-body">
+	          <input class="form-control" ng-model="customer.name" placeholder="Name" focus="true" autofocus>
+	          <input class="form-control" ng-model="customer.company" placeholder="Company">
+	        </div>
+	        <div class="modal-footer">
+	          <button class="btn pull-left" data-dismiss="modal" aria-hidden="true">Close</button>
+	          <button class="btn btn-primary" ng-click="createCustomer()">Create</button>
+	        </div>
+	      </div>
+	    </form>
+	  </div>
+	</div>
+	
+	<!-- Modal For New Customer (you might do new & edit in one modal, separated just for clearness)-->
+  <div id="editCustomerModalId" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <form>
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Customer</h4>
+          </div>
+          <div class="modal-body">
+            Name: <input class="form-control" ng-model="customer.name" placeholder="Name" focus="true" autofocus>
+            Company: <input class="form-control" ng-model="customer.company" placeholder="Company">
+          </div>
+          <div class="modal-footer">
+            <button class="btn pull-left" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary" ng-click="updateCustomer(customer)">Create</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
