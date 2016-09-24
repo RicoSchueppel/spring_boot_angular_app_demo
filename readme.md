@@ -1,5 +1,6 @@
 Demo App to demonstrate Java Spring Boot App with Angular JS.
 
+talk at #t3cmallorca barcamp 2016 
 
 To get a better overview, most steps are git tagged. Just use
 > git tag -n
