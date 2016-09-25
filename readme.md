@@ -5,6 +5,7 @@ talk at #t3cmallorca barcamp 2016
 To get a better overview, most steps are git tagged. Just use
 > git tag -n
 
+**Important:** if you use tag v0.4 and higher, you need a mysql database connection .. check src/main/resources/application-dev.yml for settings 
 
 ## 0. install maven
 
